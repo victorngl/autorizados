@@ -4,7 +4,6 @@ import { Prisma, PrismaClient } from '@prisma/client'
 export default async function handler(req, res) {
   // Get data submitted in request's body.
   const body = req.body
-  console.log(body);
 
   if (!body.resposta) {
 
@@ -21,7 +20,9 @@ export default async function handler(req, res) {
     dataJsonRelatorio = { ...dataJsonRelatorio, atividade_cultural: body.atividade_cultural }
     dataJsonRelatorio = { ...dataJsonRelatorio, atividade_prioridade: body.atividade_prioridade }
     dataJsonRelatorio = { ...dataJsonRelatorio, resposta: body.resposta }
-
+    dataJsonRelatorio = { ...dataJsonRelatorio, user_registro: body.user_registro }
+    dataJsonRelatorio = { ...dataJsonRelatorio, date_registro: body.date_registro }
+    
   }
 
   const updateAluno = await prisma.alunos.update({
@@ -34,7 +35,17 @@ export default async function handler(req, res) {
     },
   })
 
-  return res.status(200).json({aluno: updateAluno})
+  
+  const updateUsuario = await prisma.responsaveis.findMany({
+    where: {
+      username: body.responsavel.username,
+    },
+    include: {
+      aluno: true, // Return all fields
+    },
+  })
+
+  return res.status(200).json({aluno: updateAluno, usuario: updateUsuario})
 
 }
 

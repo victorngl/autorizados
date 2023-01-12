@@ -29,5 +29,5 @@ model alunos {
   atividade_optativa       String? @db.VarChar(60)
   user_registro       String? @db.VarChar(60)
   date_registro       String? @db.VarChar(60)
-   resposta          Int @default(0)
+  resposta          Int @default(0)
 }

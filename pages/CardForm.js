@@ -1,18 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
-/* Material Tailwind Imports */
-import {
-  Chip,
-  Card,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-} from "@material-tailwind/react";
+import React, { useContext } from 'react';
+import { AuthContext } from './providers/auth';
 
 
-
-export default function CardForm({ usuario, setResponsavel }) {
+export default function CardForm({children}) {
+  const { responsavel, setResponsavel, usuario, setUsuario } = useContext(AuthContext);
 
   const handleClick = (event, index) => {
     event.preventDefault();
@@ -28,48 +20,84 @@ export default function CardForm({ usuario, setResponsavel }) {
     return true;
   }
 
-
+  if(!isEmptyObject(responsavel) && !isEmptyObject(usuario)) {
+    return {...children}
+  }
   return (
-    <div>
+    <>
       {!isEmptyObject(usuario) ?
-        <div className='md:flex  md:w-10/12gap-3'>
+        <div className='md:flex gap-3 justify-center'>
           {usuario.map((user, index) => (
-           
-            
-            <Card key={user.naluno} className="mb-5 shadow-xl border-2">
-              <CardBody className="text-left md:h-80 sm:h-80">
-                <Typography variant="h6" className="mb-4 text-center">
-                  
-                  {user.aluno.resposta == 0 ? (<Chip className='m-5' value="Incrição Pendente" />):(<Chip color='green' className='m-5' value="Incrição Realizada" />)}
-                  
-                </Typography>
-                
 
-                <ul className='mb-15 text-center font-bold'>
-                  <li className='mb-5'>{user.aluno.nome}</li>
-                  
-                </ul>
+            <div key={user.naluno} className="flex justify-center mb-2 shadow-xl md:flex md:w-9/12 gap-4">
+              <div className="text-left">
+                <div className={(user.aluno.resposta == 0 ? 'm-3 text-center p-2 text-white rounded bg-blue-500 font-bold' : 'm-3 text-center p-2 text-white rounded bg-green-500 font-bold')}>
 
-               
-                
-                <div className='mt-8 mb-10 text-justify pr-10 pl-10'>
-                  <div className='font-medium'>A arte da educação deve ser cultivada em todos os aspectos, para se tornar uma ciência construída a partir do conhecimento profundo da natureza humana.</div>
-                  <div className='mt-2 text-right text-[16px]'>Johann Heinrich Pestalozzi</div>
+                  {user.aluno.resposta == 0 ? (<a>Incrição Pendente</a>) : (<a>Inscrição Realizada</a>)}
+
                 </div>
-               
-                
-              </CardBody>
-              <CardFooter divider className="text-center py-3">
 
-                {user.aluno.resposta == 0 &&
-                  <Button onClick={e => handleClick(e, index)} color='green'>Realizar Inscrição</Button>
+                <div className='justify-center flex'>
+                  <label htmlFor='nomealuno' className='font-bold mr-4 text-sm'>Nome do Aluno:</label>
+                  <a name='nomealuno' className='mb-5 text-sm'>{user.aluno.nome}</a>
+                </div>
+
+                {user.aluno.resposta == 1 ? (
+                  <div className='justify-center mx-2 text-sm'>
+                    <div className='text-lg text-center font-bold mb-4'>Atividades Inscritas:</div>
+
+                    <div className='mb-2'>
+                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Prioritária:</label>
+                      <a name='nomealuno' className='mb-5'>{user.aluno.atividade_prioridade}</a>
+                    </div>
+
+                    <div>
+                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Esportiva:</label>
+                      <a name='nomealuno' className='mb-5'>{user.aluno.atividade_esportiva}</a>
+                    </div>
+
+                    <div>
+                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Cultural:</label>
+                      <a name='nomealuno' className='mb-5'>{user.aluno.atividade_cultural}</a>
+                    </div>
+
+                    <div>
+                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Optativa:</label>
+                      <a name='nomealuno' className='mb-5'>{user.aluno.atividade_optativa}</a>
+                    </div>
+
+                    <div className='my-5 text-center'>
+                      <a name='nomealuno'>Inscrição feita pelo usuário {user.aluno.user_registro} em {user.aluno.date_registro}</a>
+                    </div>
+
+                    
+
+                    <div className='mt-5 text-justify font-semibold'>Caso queira realizar alguma alteração, entre em contato com suporte@cambauba.org.br</div>
+
+                  </div>
+
+                ) : (
+
+                  <div className='text-justify m-4 text-sm'>O aluno não está inscrito em nenhuma atividade. Clique abaixo para realizar a inscrição.</div>
+                )}
+
+
+
+
+                <div className="text-center m-5" >
+
+                  {user.aluno.resposta == 0 &&
+                    <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded' onClick={e => handleClick(e, index)}>Realizar Inscrição</button>
                   }
 
-              </CardFooter>
-            </Card>
+                </div>
+
+              </div>
+
+            </div>
           ))}
         </div>
         : <div className='p-4 text-justify text-lg'>Não existem alunos elegíveis para inscrição em atividades relacionados a este usuário. Entre em contato com suporte@cambauba.org.br</div>}
-    </div>
+    </>
   )
 }

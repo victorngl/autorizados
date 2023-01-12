@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router'
+import { AuthContext } from './providers/auth';
 
 const OficinasEsportivas = [
   {id: 1, name: 'BASQUETE - 3º ao 5º /EF', permission: [{serie: '3º Ano'}, {serie: '5º Ano'}, {serie: '5º Ano'} ]},
@@ -41,12 +42,14 @@ const OficinasCulturais = [
   {id: 6, name: 'Desenho Artístico - 6º /EF ao E. Médio', permission: [ {serie: '6º Ano'}, {serie: '7º Ano'}, {serie: '8º Ano'}, {serie: '9º Ano'}, {serie: '1º Série'}, {serie: '2ª Série'}, {serie: '3ª Série'} ]},
 ];
 
-export default function RematriculaForm({ responsavel, setResponsavel }) {
+export default function RematriculaForm({}) {
   const [AtividadeCultural, setAtividadeCultural] = useState('0');
   const [AtividadeEsportiva, setAtividadeEsportiva] = useState('0');
   const [AtividadeOptativa, setAtividadeOptativa] = useState('0');
   const [AtividadePrioridade, setAtividadePrioridade] = useState('0');
   const router = useRouter()
+
+  const { responsavel, setResponsavel, usuario, setUsuario } = useContext(AuthContext);
 
   function isEmptyObject(obj) {
     for (var key in obj) {
@@ -75,7 +78,9 @@ export default function RematriculaForm({ responsavel, setResponsavel }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
+    const current = new Date();
+
     const data = {
       responsavel: responsavel,
       atividade_prioridade: AtividadePrioridade,
@@ -83,6 +88,8 @@ export default function RematriculaForm({ responsavel, setResponsavel }) {
       atividade_esportiva: AtividadeEsportiva,
       atividade_optativa: AtividadeOptativa,
       resposta: 1,
+      user_registro: responsavel.username,
+      date_registro: current,
     }
 
     const JSONdata = JSON.stringify(data)
@@ -99,15 +106,13 @@ export default function RematriculaForm({ responsavel, setResponsavel }) {
 
     const result = await response.json()
 
+    setUsuario(result.usuario)
     setResponsavel({})
 
-    router.push(result.aluno.responsaveis[0].username)
   }
 
   if (isEmptyObject(responsavel))
     return (<h1>Erro desconhecido</h1>)
-
-    console.log(OficinasEsportivas)
 
   return (
     <div className='p-5'>
@@ -216,5 +221,8 @@ export default function RematriculaForm({ responsavel, setResponsavel }) {
         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enviar</button>
       </form>
     </div>
+    
+    
+
   )
 }
