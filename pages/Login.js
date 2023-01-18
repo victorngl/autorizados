@@ -1,7 +1,13 @@
-import React, { useState, useContext } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from './providers/auth';
+import { signIn } from "next-auth/react"
+import { useSession } from "next-auth/react"
+
 
 export default function Login({ children }) {
+  const { data: session, status } = useSession()
+
   const { responsavel, setResponsavel, usuario, setUsuario } = useContext(AuthContext);
 
   const [LoginCPF, setLoginCPF] = useState('');
@@ -29,9 +35,31 @@ export default function Login({ children }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const data = {
+    const res = await signIn('credentials', {
+      redirect: false,
+      username: LoginWpensar,
       cpf: LoginCPF,
-      user_wpensar: LoginWpensar,
+    });
+
+    if(res.status == 401) {
+      setError('Usuário ou CPF incorretos.')
+    }
+
+    console.log(res);
+
+  }
+
+  useEffect(() => {
+    if(session)
+      getResponsavel(session.user.name);
+  }, [session]);
+
+
+  const getResponsavel = async (ResponsavelLogin) => {
+    console.log(ResponsavelLogin);
+
+    const data = {
+      username: ResponsavelLogin,
     }
 
     const JSONdata = JSON.stringify(data)
@@ -44,24 +72,24 @@ export default function Login({ children }) {
       body: JSONdata,
     }
 
-    const response = await fetch('/api/get_login', options)
+    const response = await fetch('/api/get_responsaveis', options)
 
     const result = await response.json()
 
     setUsuario(result.login)
-
-    if (isEmptyObject(usuario)) {
-      setError('Usuário ou CPF incorretos.')
-    }
 
     //setResponsavel({})
 
     //router.push(result.aluno.responsaveis[0].username)
   }
 
-  if (!isEmptyObject(usuario)) {
-    return { ...children }
-  }
+  //if (!isEmptyObject(usuario)) {
+  // return { ...children }
+  //}
+
+  if (session) {
+    return { ...children}
+}
 
   return (
     <div className='p-5 justify-center flex'>

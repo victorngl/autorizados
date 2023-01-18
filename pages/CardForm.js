@@ -1,10 +1,12 @@
 
 import React, { useContext } from 'react';
 import { AuthContext } from './providers/auth';
-
+import { useSession } from 'next-auth/react';
 
 export default function CardForm({children}) {
   const { responsavel, setResponsavel, usuario, setUsuario } = useContext(AuthContext);
+
+  const { data: session, status } = useSession()
 
   const handleClick = (event, index) => {
     event.preventDefault();
@@ -23,6 +25,7 @@ export default function CardForm({children}) {
   if(!isEmptyObject(responsavel) && !isEmptyObject(usuario)) {
     return {...children}
   }
+
   return (
     <>
       {!isEmptyObject(usuario) ?
@@ -98,7 +101,9 @@ export default function CardForm({children}) {
            
           ))}
         </div>
-        : <div className='p-4 text-justify text-lg'>Não existem alunos elegíveis para inscrição em atividades relacionados a este usuário. Entre em contato com suporte@cambauba.org.br</div>}
+        : <div className='p-4 text-justify text-lg'>Não existem alunos elegíveis para inscrição em atividades relacionados a este usuário. Entre em contato com suporte@cambauba.org.br </div>
+        
+        }
     </>
   )
 }

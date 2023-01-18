@@ -1,8 +1,13 @@
 import '../styles/globals.css'
 import Head from 'next/head'
 import AuthProvider from './providers/auth'
+import { SessionProvider } from "next-auth/react"
 
-function MyApp({ Component, pageProps }) {
+
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
     <>
       <Head>
@@ -12,7 +17,9 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="https://cambauba.org.br/wp-content/uploads/2021/02/cropped-faviconcambauba-150x150.png" sizes="32x32"></link>
       </Head>
       <AuthProvider>
-        <Component {...pageProps} />
+        <SessionProvider>
+          <Component {...pageProps} />
+        </SessionProvider>
       </AuthProvider>
     </>
   )
