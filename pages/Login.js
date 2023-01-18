@@ -8,6 +8,7 @@ export default function Login({ children }) {
   const [LoginWpensar, setLoginWPensar] = useState('');
   const [error, setError] = useState('');
 
+  
   function isEmptyObject(obj) {
     for (var key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -47,8 +48,7 @@ export default function Login({ children }) {
 
     const result = await response.json()
 
-
-    setUsuario(result.data)
+    setUsuario(result.login)
 
     if (isEmptyObject(usuario)) {
       setError('Usuário ou CPF incorretos.')

@@ -29,8 +29,8 @@ export default function CardForm({children}) {
         <div className='md:flex gap-3 justify-center'>
           {usuario.map((user, index) => (
 
-            <div key={user.naluno} className="flex justify-center mb-2 shadow-xl md:flex md:w-9/12 gap-4">
-              <div className="text-left">
+            <div key={user.naluno} className="border-8 border-black justify-center mb-2 shadow-xl md:w-9/12 gap-4">
+             
                 <div className={(user.aluno.resposta == 0 ? 'm-3 text-center p-2 text-white rounded bg-blue-500 font-bold' : 'm-3 text-center p-2 text-white rounded bg-green-500 font-bold')}>
 
                   {user.aluno.resposta == 0 ? (<a>Incrição Pendente</a>) : (<a>Inscrição Realizada</a>)}
@@ -44,25 +44,25 @@ export default function CardForm({children}) {
 
                 {user.aluno.resposta == 1 ? (
                   <div className='justify-center mx-2 text-sm'>
-                    <div className='text-lg text-center font-bold mb-4'>Atividades Inscritas:</div>
+                    <div className='text-lg text-center font-bold'>Atividades Inscritas:</div>
 
                     <div className='mb-2'>
-                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Prioritária:</label>
+                      <p htmlFor='nomealuno' className='font-bold'>Atividade Prioritária:</p>
                       <a name='nomealuno' className='mb-5'>{user.aluno.atividade_prioridade}</a>
                     </div>
 
                     <div>
-                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Esportiva:</label>
+                      <p htmlFor='nomealuno' className='font-bold'>Atividade Esportiva:</p>
                       <a name='nomealuno' className='mb-5'>{user.aluno.atividade_esportiva}</a>
                     </div>
 
                     <div>
-                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Cultural:</label>
+                      <p htmlFor='nomealuno' className='font-bold'>Atividade Cultural:</p>
                       <a name='nomealuno' className='mb-5'>{user.aluno.atividade_cultural}</a>
                     </div>
 
                     <div>
-                      <label htmlFor='nomealuno' className='font-bold mr-4'>Atividade Optativa:</label>
+                      <p htmlFor='nomealuno' className='font-bold mr-4'>Atividade Optativa:</p>
                       <a name='nomealuno' className='mb-5'>{user.aluno.atividade_optativa}</a>
                     </div>
 
@@ -84,17 +84,18 @@ export default function CardForm({children}) {
 
 
 
-                <div className="text-center m-5" >
+                <div className="text-center m-5 border-8 border-blue-500" >
 
-                  {user.aluno.resposta == 0 &&
+                  {user.aluno.resposta  == 0 ?
                     <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded' onClick={e => handleClick(e, index)}>Realizar Inscrição</button>
+                    :<button className='bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded' onClick={e => handleClick(e, index)}>Alterar Inscrição</button>
                   }
 
                 </div>
 
               </div>
 
-            </div>
+           
           ))}
         </div>
         : <div className='p-4 text-justify text-lg'>Não existem alunos elegíveis para inscrição em atividades relacionados a este usuário. Entre em contato com suporte@cambauba.org.br</div>}

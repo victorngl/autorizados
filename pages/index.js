@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
 import CardForm from './CardForm';
-import RematriculaForm from './RematriculaForm'
+import AtividadesForm from './AtividadesForm'
 import Layout from './Layout'
 import Login from './Login'
 
@@ -12,7 +12,7 @@ export default function Home() {
     <Layout>
       <Login>
         <CardForm  >
-          <RematriculaForm />
+          <AtividadesForm />
         </CardForm>
       </Login>
     </Layout>

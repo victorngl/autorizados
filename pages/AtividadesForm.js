@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router'
 import { AuthContext } from './providers/auth';
+import moment from 'moment/moment';
 
 const OficinasEsportivas = [
   {id: 1, name: 'BASQUETE - 3º ao 5º /EF', permission: [{serie: '3º Ano'}, {serie: '5º Ano'}, {serie: '5º Ano'} ]},
@@ -42,12 +43,11 @@ const OficinasCulturais = [
   {id: 6, name: 'Desenho Artístico - 6º /EF ao E. Médio', permission: [ {serie: '6º Ano'}, {serie: '7º Ano'}, {serie: '8º Ano'}, {serie: '9º Ano'}, {serie: '1º Série'}, {serie: '2ª Série'}, {serie: '3ª Série'} ]},
 ];
 
-export default function RematriculaForm({}) {
+export default function AtividadesForm({}) {
   const [AtividadeCultural, setAtividadeCultural] = useState('0');
   const [AtividadeEsportiva, setAtividadeEsportiva] = useState('0');
   const [AtividadeOptativa, setAtividadeOptativa] = useState('0');
   const [AtividadePrioridade, setAtividadePrioridade] = useState('0');
-  const router = useRouter()
 
   const { responsavel, setResponsavel, usuario, setUsuario } = useContext(AuthContext);
 
@@ -80,6 +80,9 @@ export default function RematriculaForm({}) {
     event.preventDefault();
 
     const current = new Date();
+    const formatDate = "DD-MM-YYYY HH:mm:ss"
+
+    const dateTime = moment(current).format(formatDate);
 
     const data = {
       responsavel: responsavel,
@@ -89,7 +92,7 @@ export default function RematriculaForm({}) {
       atividade_optativa: AtividadeOptativa,
       resposta: 1,
       user_registro: responsavel.username,
-      date_registro: current,
+      date_registro: dateTime,
     }
 
     const JSONdata = JSON.stringify(data)
