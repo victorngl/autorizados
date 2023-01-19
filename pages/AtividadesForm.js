@@ -45,9 +45,9 @@ const OficinasCulturais = [
 ];
 
 export default function AtividadesForm({ }) {
-  const [AtividadeCultural, setAtividadeCultural] = useState('0');
-  const [AtividadeEsportiva, setAtividadeEsportiva] = useState('0');
-  const [AtividadeOptativa, setAtividadeOptativa] = useState('0');
+  const [AtividadeCultural,   setAtividadeCultural]   = useState('Não se aplica');
+  const [AtividadeEsportiva,  setAtividadeEsportiva]  = useState('Não se aplica');
+  const [AtividadeOptativa,   setAtividadeOptativa]   = useState('Não se aplica');
   const [AtividadePrioridade, setAtividadePrioridade] = useState('0');
 
   const { responsavel, setResponsavel, usuario, setUsuario } = useContext(AuthContext);
@@ -164,7 +164,7 @@ export default function AtividadesForm({ }) {
         <div className='mb-5' onChange={onEsportivaValueChange}>
           <label required htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Escolha uma atividade esportiva: {AtividadePrioridade == 'Esportiva' && <h3 className='font-bold'> Atividade Prioritária </h3>}</label>
           <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value="Não se aplica">Não se aplica</option>
+            <option value="Não se aplica" >Não se aplica</option>
 
             {OficinasEsportivas.map((modalidade, index) =>
 
