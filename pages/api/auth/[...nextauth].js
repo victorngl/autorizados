@@ -1,6 +1,5 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
-import { AuthContext } from './providers/auth';
 
 function isEmptyObject(obj) {
   for (var key in obj) {
@@ -30,7 +29,7 @@ export const authOptions = {
           // Add logic here to look up the user from the credentials supplied
           
           const payload = {
-            username: credentials.cpf,
+            cpf: credentials.cpf,
             user_wpensar: credentials.username,
           };
   

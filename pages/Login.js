@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from './providers/auth';
 import { signIn } from "next-auth/react"
 import { useSession } from "next-auth/react"
-
+import InputMask from 'react-input-mask';
 
 export default function Login({ children }) {
   const { data: session, status } = useSession()
@@ -14,7 +14,7 @@ export default function Login({ children }) {
   const [LoginWpensar, setLoginWPensar] = useState('');
   const [error, setError] = useState('');
 
-  
+
   function isEmptyObject(obj) {
     for (var key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -41,7 +41,7 @@ export default function Login({ children }) {
       cpf: LoginCPF,
     });
 
-    if(res.status == 401) {
+    if (res.status == 401) {
       setError('Usuário ou CPF incorretos.')
     }
 
@@ -50,7 +50,7 @@ export default function Login({ children }) {
   }
 
   useEffect(() => {
-    if(session)
+    if (session)
       getResponsavel(session.user.name);
   }, [session]);
 
@@ -88,8 +88,8 @@ export default function Login({ children }) {
   //}
 
   if (session) {
-    return { ...children}
-}
+    return { ...children }
+  }
 
   return (
     <div className='p-5 justify-center flex'>
@@ -113,8 +113,12 @@ export default function Login({ children }) {
 
             <div className="mb-6">
               <label htmlFor="cpf" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CPF</label>
-              <input onChange={onCPFValueChange} type="cpf" id="cpf" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder='000.000.000-00' required />
+              <InputMask type='cpf' id='cpf' className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' mask="999.999.999-99" onChange={onCPFValueChange} placeholder='000.000.000-00'  required />
             </div>
+
+           
+             
+           
 
           </>
 

@@ -32,7 +32,7 @@ export default function CardForm({children}) {
         <div className='md:flex gap-3 justify-center'>
           {usuario.map((user, index) => (
 
-            <div key={user.naluno} className="border-8 border-black justify-center mb-2 shadow-xl md:w-9/12 gap-4">
+            <div key={user.naluno} className="rounded border-2 border-grey-500 justify-center mb-2 shadow-xl md:w-9/12 gap-4">
              
                 <div className={(user.aluno.resposta == 0 ? 'm-3 text-center p-2 text-white rounded bg-blue-500 font-bold' : 'm-3 text-center p-2 text-white rounded bg-green-500 font-bold')}>
 
@@ -75,7 +75,7 @@ export default function CardForm({children}) {
 
                     
 
-                    <div className='mt-5 text-justify font-semibold'>Caso queira realizar alguma alteração, entre em contato com suporte@cambauba.org.br</div>
+                    <div className='mt-5 text-justify font-semibold'>Caso queira realizar alguma alteração, entre em contato com tuanne.moser@cambauba.org.br</div>
 
                   </div>
 
@@ -87,11 +87,10 @@ export default function CardForm({children}) {
 
 
 
-                <div className="text-center m-5 border-8 border-blue-500" >
+                <div className="text-center m-5 " >
 
-                  {user.aluno.resposta  == 0 ?
+                  {user.aluno.resposta  == 0 &&
                     <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded' onClick={e => handleClick(e, index)}>Realizar Inscrição</button>
-                    :<button className='bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded' onClick={e => handleClick(e, index)}>Alterar Inscrição</button>
                   }
 
                 </div>
