@@ -96,6 +96,15 @@ export default function AtividadesForm({ }) {
       date_registro: dateTime,
     }
 
+    const DataEmail = {
+      name: responsavel.nome,
+      email: responsavel.email,
+      prioritaria: AtividadePrioridade,
+      esportiva: AtividadeEsportiva,
+      cultural: AtividadeCultural,
+      optativa: AtividadeOptativa,
+    }
+
     const JSONdata = JSON.stringify(data)
 
     const options = {
@@ -110,9 +119,30 @@ export default function AtividadesForm({ }) {
 
     const result = await response.json()
 
+    
+    sendEmail(DataEmail);
     setUsuario(result.usuario)
     setResponsavel({})
 
+  }
+
+  const sendEmail = async (DataEmail) => {
+    
+    const JSONdata = JSON.stringify(DataEmail)
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSONdata,
+    }
+
+    const response = await fetch('/api/email/contact', options)
+
+    const result = await response.json()
+
+    console.log(result)
   }
 
   if (isEmptyObject(responsavel))

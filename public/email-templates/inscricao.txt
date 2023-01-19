@@ -1,0 +1,6 @@
+Inscrição Realizada
+Modalidades Inscritas
+Prioritaria: %PRIORITARIA%
+Cultural: %CULTURAL%
+Esportiva: %ESPORTIVA%
+Optativa: %OPTATIVA%
