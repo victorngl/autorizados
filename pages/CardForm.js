@@ -75,7 +75,7 @@ export default function CardForm({children}) {
 
                     
 
-                    <div className='mt-5 text-justify font-semibold'>Caso queira realizar alguma alteração, entre em contato com tuanne.moser@cambauba.org.br</div>
+                   <div className='mx-5 text-justify font-semibold'>Em caso de dúvidas relacionas às oficinas, entre em contato com tuanne.moser@cambauba.org.br</div>
 
                   </div>
 
@@ -89,8 +89,10 @@ export default function CardForm({children}) {
 
                 <div className="text-center m-5 " >
 
-                  {user.aluno.resposta  == 0 &&
+                  {user.aluno.resposta  == 0 ?
                     <button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded' onClick={e => handleClick(e, index)}>Realizar Inscrição</button>
+                    :
+                    <button className='bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded' onClick={e => handleClick(e, index)}>Alterar Inscrição</button>
                   }
 
                 </div>

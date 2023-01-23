@@ -42,13 +42,17 @@ async function sendEmails(req, res) {
         .replace("%PRIORITARIA%", req.body.prioritaria)
         .replace("%ESPORTIVA%", req.body.esportiva)
         .replace("%CULTURAL%", req.body.cultural)
-        .replace("%OPTATIVA%", req.body.optativa);
+        .replace("%OPTATIVA%", req.body.optativa)
+        .replace("%USUARIO%", req.body.usuario)
+        .replace("%DATAINSCRICAO%", req.body.date_registro);
 
     let sendTxt = inscricaoTxt
         .replace("%PRIORITARIA%", req.body.prioritaria)
         .replace("%ESPORTIVA%", req.body.esportiva)
         .replace("%CULTURAL%", req.body.cultural)
-        .replace("%OPTATIVA%", req.body.optativa);
+        .replace("%OPTATIVA%", req.body.optativa)
+        .replace("%USUARIO%", req.body.usuario)
+        .replace("%DATAINSCRICAO%", req.body.date_registro);
 
     // Send our customer-bound email
     let info = await transporter.sendMail({

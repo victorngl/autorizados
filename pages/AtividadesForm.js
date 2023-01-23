@@ -1,8 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { useRouter } from 'next/router'
 import { AuthContext } from './providers/auth';
 import moment from 'moment/moment';
-import Image from 'next/image'
 
 const OficinasEsportivas = [
   { id: 1, name: 'BASQUETE - 3º ao 5º /EF', permission: [{ serie: '3º Ano' }, { serie: '5º Ano' }, { serie: '5º Ano' }] },
@@ -103,6 +101,8 @@ export default function AtividadesForm({ }) {
       esportiva: AtividadeEsportiva,
       cultural: AtividadeCultural,
       optativa: AtividadeOptativa,
+      usuario: responsavel.username,
+      date_registro: dateTime,
     }
 
     const JSONdata = JSON.stringify(data)
@@ -119,8 +119,9 @@ export default function AtividadesForm({ }) {
 
     const result = await response.json()
 
-    
-    sendEmail(DataEmail);
+    if(DataEmail.email)
+      sendEmail(DataEmail);
+
     setUsuario(result.usuario)
     setResponsavel({})
 

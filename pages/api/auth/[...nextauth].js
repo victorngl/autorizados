@@ -22,7 +22,7 @@ export const authOptions = {
         // e.g. domain, username, password, 2FA token, etc.
         // You can pass any HTML attribute to the <input> tag through the object.
         credentials: {
-          username: { label: "Login WPensar", type: "text", placeholder: "primeiro_nome.ultimo_nome" },
+          username: { label: "Login WPensar", type: "text", placeholder: "Exemplo: joao.silva" },
           cpf: { label: "CPF", type: "text" }
         },
         async authorize(credentials, req) {
@@ -76,6 +76,9 @@ export const authOptions = {
 
       return session;
     },
+  },
+  session: {
+    maxAge: 12 * 60 * 60, // 12 horas
   },
   secret: "test",
   jwt: {

@@ -8,27 +8,27 @@ datasource db {
 }
 
 model responsaveis {
-  id               String  @id @unique(map: "id") @db.VarChar(6)
+  id               Int  @id @default(autoincrement())
   naluno           Int
   username         String? @db.VarChar(33)
   nome             String? @db.VarChar(60)
   cpf              String? @db.VarChar(17)
   email            String? @db.VarChar(60)
-  aluno           alunos @relation(fields: [naluno], references: [naluno])
+  aluno            alunos @relation(fields: [naluno], references: [naluno])
 }
 
 model alunos {
-  responsaveis         responsaveis[]
-  naluno            Int     @id @unique(map: "naluno")
-  nome              String? @db.VarChar(100)
-  sexo              String? @db.VarChar(15)
-  dnasc             String? @db.VarChar(100)
-  s_rie             String? @db.VarChar(50)
-  atividade_prioridade            String? @db.VarChar(60)
-  atividade_cultural             String? @db.VarChar(60)
-  atividade_esportiva          String?     @db.VarChar(60)
-  atividade_optativa       String? @db.VarChar(60)
-  user_registro       String? @db.VarChar(60)
-  date_registro       String? @db.VarChar(60)
-  resposta          Int @default(0)
+  responsaveis              responsaveis[]
+  naluno                    Int     @id @unique(map: "naluno")
+  nome                      String? @db.VarChar(100)
+  sexo                      String? @db.VarChar(15)
+  dnasc                     String? @db.VarChar(100)
+  s_rie                     String? @db.VarChar(50)
+  atividade_prioridade      String? @db.VarChar(60)
+  atividade_cultural        String? @db.VarChar(60)
+  atividade_esportiva       String? @db.VarChar(60)
+  atividade_optativa        String? @db.VarChar(60)
+  user_registro             String? @db.VarChar(60)
+  date_registro             String? @db.VarChar(60)
+  resposta                  Int @default(0)
 }

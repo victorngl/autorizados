@@ -1,6 +1,13 @@
-Inscrição Realizada
+Solicitação de Inscrição recebida com sucesso!
+
 Modalidades Inscritas
 Prioritaria: %PRIORITARIA%
-Cultural: %CULTURAL%
 Esportiva: %ESPORTIVA%
+Cultural: %CULTURAL%
 Optativa: %OPTATIVA%
+
+Incrição feita pelo usuario %USUARIO% em %DATAINSCRICAO%
+
+Em caso de dúvidas relacionas às oficinas, entre em contato com tuanne.moser@cambauba.org.br
+
+Este é um e-mail de notificação e foi gerado automaticamente. Por favor, não responda esta mensagem.
