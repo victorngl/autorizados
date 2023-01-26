@@ -5,21 +5,20 @@ export default async function handler(req, res) {
   // Get data submitted in request's body.
   const body = req.body
 
-  if (!body.cpf && !body.user_wpensar) {
+  if (!body.cpf) {
 
-    return res.status(400).json({ error: 'Credenciais inválidas' })
+    return res.status(400).json({ error: 'CPF Inválido!' })
   }
 
-  const login = await prisma.responsaveis.findMany({
+  const user = await prisma.responsaveis.findMany({
     where: {
       cpf: body.cpf,
-      username: body.user_wpensar,
     },
     include: {
-      aluno: false, // Return all fields
+      aluno: true, // Return all fields
     },
   })
   
-  return res.status(200).json({ login: login })
+  return res.status(200).json({ user })
   
 }

@@ -1,6 +1,6 @@
 
 import React, { useContext } from 'react';
-import { AuthContext } from './providers/auth';
+import { AuthContext } from '../providers/user';
 import { useSession } from 'next-auth/react';
 
 export default function CardForm({children}) {

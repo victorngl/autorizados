@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaClient } from '@prisma/client';
 
 function isEmptyObject(obj) {
   for (var key in obj) {
@@ -27,29 +28,24 @@ export const authOptions = {
         },
         async authorize(credentials, req) {
           // Add logic here to look up the user from the credentials supplied
-          
-          const payload = {
-            cpf: credentials.cpf,
-            user_wpensar: credentials.username,
-          };
-  
-          const res = await fetch(`${process.env.NEXTAUTH_URL}/api/get_login`, {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
 
-          const result  = await res.json()
+          const prisma = new PrismaClient();
+         
+          const getUser = await prisma.responsaveis.findFirst({
+            where: {
+              cpf: credentials.cpf,
+              username: credentials.username,
+            }
+          })
           
-          const user = result.login
+          let userReturned;
 
-          if (!isEmptyObject(user)) {
-            
-            return { name: user[0].username };
+          if (getUser) {
+            userReturned = { name: getUser.nome, id: getUser.cpf }
+            return userReturned ;
 
           } else {
+            
             // If you return null then an error will be displayed advising the user to check their details.
             return null
     
@@ -71,8 +67,9 @@ export const authOptions = {
     session: ({ session, token }) => {
       if (token) {
         session.id = token.id;
-       
       }
+
+      session.user.id = session.id
 
       return session;
     },
@@ -80,7 +77,6 @@ export const authOptions = {
   session: {
     maxAge: 12 * 60 * 60, // 12 horas
   },
-  secret: "test",
   jwt: {
     secret: "test",
     encryption: true,

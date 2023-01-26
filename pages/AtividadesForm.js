@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from './providers/auth';
+import { AuthContext } from '../providers/user';
 import moment from 'moment/moment';
 
 const OficinasEsportivas = [
