@@ -21,7 +21,7 @@ export default function AutorizadosPage({ children }) {
   return (
     <Layout>
       {alunos &&
-        <div className='gap-3 flex'>
+        <div className='w-full md:flex gap-4 justify-center'>
           {
             alunos.map((user, index) => (
 
