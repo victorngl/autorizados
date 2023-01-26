@@ -7,16 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model responsaveis {
+model usuarios {
   username         String? @db.VarChar(33)
   nome             String @db.VarChar(60)
   cpf              String @id
   email            String? @db.VarChar(60)
   aluno            Alunos_Responsaveis[]
+  role             String? @db.VarChar(33)
 }
 
 model alunos {
-  responsaveis              Alunos_Responsaveis[]
+  usuarios                  Alunos_Responsaveis[]
   naluno                    Int    @id @unique()
   nome                      String @db.VarChar(100)
   sexo                      String @db.VarChar(15)
@@ -36,7 +37,7 @@ model autorizados {
 }
 
 model Alunos_Responsaveis {
-  responsaveis        responsaveis     @relation(fields: [cpf_responsavel], references: [cpf])
+  responsaveis        usuarios     @relation(fields: [cpf_responsavel], references: [cpf])
   cpf_responsavel     String // relation scalar field (used in the `@relation` attribute above)
   alunos              alunos @relation(fields: [naluno], references: [naluno])
   naluno              Int // relation scalar field (used in the `@relation` attribute above)

@@ -3,13 +3,14 @@ import React, { useState, useContext, useEffect } from 'react';
 import { signIn } from "next-auth/react"
 import { useSession } from "next-auth/react"
 import InputMask from 'react-input-mask';
-import { useRouter } from 'next/router'
-import Layout from '../layout/Layout';
 import { UserContext } from '../../providers/user';
+import Layout from '../layout/Layout';
+import { AlunosContext } from '../../providers/alunos';
 
 export default function Login({ children }) {
   const { data: session, status } = useSession()
   const { usuario, setUsuario } = useContext(UserContext);
+  const { alunos, setAlunos } = useContext(AlunosContext);
 
   const [LoginCPF, setLoginCPF] = useState('');
   const [LoginWpensar, setLoginWPensar] = useState('');
@@ -65,6 +66,32 @@ export default function Login({ children }) {
     const result = await response.json()
 
     setUsuario(result.user);
+
+    getAlunos(userId);
+  }
+
+  const getAlunos = async (userId) => {
+
+    const data = {
+      cpf_responsavel: userId,
+    }
+
+    const JSONdata = JSON.stringify(data)
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSONdata,
+    }
+
+    const response = await fetch('/api/get_alunos', options)
+
+    const result = await response.json()
+
+    console.log(result.alunos)
+    setAlunos(result.alunos);
   }
 
   if (session && usuario) {
@@ -106,6 +133,6 @@ export default function Login({ children }) {
           </form>
         </div>
       </div >
-    </Layout>
+      </Layout>
   )
 }

@@ -1,16 +1,13 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
 
-import { useSession } from 'next-auth/react';
-import CardForm from './CardForm';
-import AtividadesForm from './AtividadesForm'
-import Layout from '../components/layout/Layout'
 
 import Dashboard from '../components/dashboard/Dashboard'
-import Login from '../components/auth/login.js'
+import Login from '../components/auth/login.js';
+import Layout from '../components/layout/Layout';
 
 export default function Home() {
-  
+
   return (
     /* 
     <Layout>
@@ -21,10 +18,11 @@ export default function Home() {
       </Login>
     </Layout>
     */
-
-    <Login>
-      <Dashboard/>
-    </Login>
+    
+      
+        <Dashboard />
+      
+   
 
   )
 

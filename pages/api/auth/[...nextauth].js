@@ -31,7 +31,7 @@ export const authOptions = {
 
           const prisma = new PrismaClient();
          
-          const getUser = await prisma.responsaveis.findFirst({
+          const getUser = await prisma.usuarios.findFirst({
             where: {
               cpf: credentials.cpf,
               username: credentials.username,
