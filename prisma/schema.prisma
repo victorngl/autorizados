@@ -29,7 +29,8 @@ model alunos {
 model autorizados {
   id                  Int     @id @unique() @default(autoincrement())
   nome                String  @db.VarChar(100)
-  parentesco          String  @db.VarChar(15)
+  documento           String  @db.VarChar(100)
+  parentesco          String  @db.VarChar(100)
   telefone            String? @db.VarChar(100)
   celular             String? @db.VarChar(100)
   aluno               alunos @relation(fields: [naluno], references: [naluno])
@@ -37,7 +38,7 @@ model autorizados {
 }
 
 model Alunos_Responsaveis {
-  responsaveis        usuarios     @relation(fields: [cpf_responsavel], references: [cpf])
+  usuarios            usuarios     @relation(fields: [cpf_responsavel], references: [cpf])
   cpf_responsavel     String // relation scalar field (used in the `@relation` attribute above)
   alunos              alunos @relation(fields: [naluno], references: [naluno])
   naluno              Int // relation scalar field (used in the `@relation` attribute above)

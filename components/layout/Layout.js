@@ -13,7 +13,7 @@ export default function Layout({ children }) {
           <p className="font-semibold md:text-2xl md:tracking-wide">Intranet - Escola Modelar Cambaúba</p>
         </div>
 
-        <div className='flex justify-center'>
+        <div>
           {children}
         </div>
 

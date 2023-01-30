@@ -16,7 +16,6 @@ export default function Login({ children }) {
   const [LoginWpensar, setLoginWPensar] = useState('');
   const [error, setError] = useState('');
 
-  
   function onCPFValueChange(event) {
     setLoginCPF(event.target.value)
   }
@@ -26,22 +25,27 @@ export default function Login({ children }) {
   }
 
   useEffect( () => {
-    if(session)
+    if(session && !usuario)
       getUser(session?.user.id);
   }, [session])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const res = await signIn('credentials', {
+    let res = await signIn('credentials', {
       redirect: false,
       username: LoginWpensar,
       cpf: LoginCPF,
 
     }).then((res) => {
         if (res.status == 401) {
-          setError('Usuário ou CPF inválidos.')
+          setError('Usuário ou CPF inválidos!')
         }
+
+        if( res.ok ) {
+
+        }
+
       })
   }
 
@@ -90,15 +94,19 @@ export default function Login({ children }) {
 
     const result = await response.json()
 
-    console.log(result.alunos)
+    //console.log(result.alunos)
     setAlunos(result.alunos);
   }
 
-  if (session && usuario) {
+
+  if (session && status == 'authenticated') {
     return {...children}
   }
   
+  
   return (
+    <>
+    {status === 'unauthenticated' && 
     <Layout>
       <div className='p-5 justify-center flex'>
         <div>
@@ -133,6 +141,7 @@ export default function Login({ children }) {
           </form>
         </div>
       </div >
-      </Layout>
+      </Layout>}
+      </>
   )
 }
