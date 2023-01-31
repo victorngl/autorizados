@@ -2,44 +2,8 @@ import React, { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { signOut } from 'next-auth/react';
 
-export default function Teste({ children }) {
+export default function Dashboard({ children }) {
   const { data: session, status } = useSession()
-
-
-  function isEmptyObject(obj) {
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  useEffect(() => {
-    if (session)
-      handleAluno();
-  }, [session])
-
-  const handleAluno = async () => {
-    const data = {
-      cpf_responsavel: session?.user.id,
-    }
-
-    const JSONdata = JSON.stringify(data)
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSONdata,
-    }
-
-    const response = await fetch('/api/get_aluno', options)
-
-    const result = await response.json()
-
-  }
 
   return (
     <div style={{

@@ -99,7 +99,7 @@ export default function Login({ children }) {
   }
 
 
-  if (session && status == 'authenticated') {
+  if (session && usuario) {
     return {...children}
   }
   
