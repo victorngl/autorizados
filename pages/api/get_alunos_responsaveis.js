@@ -5,21 +5,21 @@ export default async function handler(req, res) {
   // Get data submitted in request's body.
   const body = req.body
 
-  if (!body.naluno) {
+  if (!body.cpf_responsavel) {
 
-    return res.status(400).json({ error: 'Número do aluno inválido' })
+    return res.status(400).json({ error: 'CPF do Responsável Inválido' })
   }
 
-  const getAluno = await prisma.alunos.findFirst({
+  const getAlunos = await prisma.alunos_Responsaveis.findMany({
     where: {
-      naluno: body.naluno,
+      cpf_responsavel: body.cpf_responsavel,
     },
     include: {
-      autorizados: true,
+      alunos: true,
       usuarios: true,
     },
   })
 
-  return res.status(200).json({ aluno: getAluno })
+  return res.status(200).json({ alunos: getAlunos })
 
 }

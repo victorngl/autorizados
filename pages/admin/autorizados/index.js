@@ -4,8 +4,9 @@ import Layout from '../../../components/layout/Layout';
 
 import { UserContext } from '../../../providers/user';
 import { AlunosContext } from '../../../providers/alunos';
+import VerAutorizadosAdmin from '../../../components/admin/autorizados/VerAutorizadosAdmin';
 
-export default function DeleteAutorizadoModal({ show, setShowDeleteModal, deleteId, handleDelete }) {
+export default function VerAutorizados({alunos}) {
 
   const { data: session, status } = useSession()
   const { usuario, setUsuario } = useContext(UserContext);
@@ -13,7 +14,7 @@ export default function DeleteAutorizadoModal({ show, setShowDeleteModal, delete
 
   useEffect(() => {
     if(usuario) { 
-        if(usuario.role != 'admin')  {
+        if(usuario.role != 'admin' && usuario.role != 'coordenador' ){
             setIsNotAdmin(true);
         }
     }
@@ -31,7 +32,27 @@ export default function DeleteAutorizadoModal({ show, setShowDeleteModal, delete
 
   return (
     <Layout>
-        <p>Ver autorizados pela coordenação aqui!</p>
+        <div>
+          <div className='flex justify-center'>
+            <p className='text-xl font-bold'>Coordenação - Autorizados a retirar</p>
+            
+          </div>
+          <VerAutorizadosAdmin alunos={alunos}/>
+          
+        </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+
+  const getAlunos = await prisma.alunos.findMany({
+    include: {
+      autorizados: true,
+    },
+  })
+
+  return {
+    props: { alunos: getAlunos }, // will be passed to the page component as props
+  }
 }

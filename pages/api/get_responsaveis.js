@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Credenciais inválidas' })
   }
 
-  const login = await prisma.usuarios.findMany({
+  const login = await prisma.usuarios.findFirst({
     where: {
       username: body.username,
     },
