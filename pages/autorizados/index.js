@@ -22,6 +22,7 @@ export default function AutorizadosPage({ children }) {
 
   return (
     <Layout>
+      
       {alunos &&
         <div className='w-full md:flex gap-4 justify-center'>
           {
