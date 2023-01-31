@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import Layout from '../../../components/layout/Layout';
+import Layout from '../../../components/layout_autorizados/Layout';
 
 import { UserContext } from '../../../providers/user';
 import VerAutorizadosAdmin from '../../../components/admin/autorizados/VerAutorizadosAdmin';

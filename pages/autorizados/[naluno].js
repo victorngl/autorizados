@@ -28,8 +28,8 @@ export default function AutorizadosPage({ aluno }) {
 
   return (
     <Layout>
-      <div className='justify-center flex'>
-        <div className='w-full px-10'>
+      <div className='justify-center flex p-7'>
+        <div className='w-full'>
           <div className='mb-5 md:flex md:items-center'>
             <div className='md:text-lg text-sm break-normal'>
               <ul className='font-bold'>

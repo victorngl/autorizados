@@ -4,8 +4,8 @@ import { signIn } from "next-auth/react"
 import { useSession } from "next-auth/react"
 import InputMask from 'react-input-mask';
 import { UserContext } from '../../providers/user';
-import Layout from '../layout/Layout';
 import { AlunosContext } from '../../providers/alunos';
+import LayoutAuth from '../layout/auth/LayoutAuth';
 
 export default function Login({ children }) {
   const { data: session, status } = useSession()
@@ -107,7 +107,7 @@ export default function Login({ children }) {
   return (
     <>
     {status === 'unauthenticated' && 
-    <Layout>
+    <LayoutAuth>
       <div className='p-5 justify-center flex'>
         <div>
           {error &&
@@ -121,7 +121,7 @@ export default function Login({ children }) {
 
           <form onSubmit={handleSubmit}>
             <>
-              <div className='text-lg text-center mb-6 font-bold text-lg font-medium'>Informe suas credenciais</div>
+              <div className='text-lg text-center mb-6 font-bold text-lg font-medium'>Login</div>
               <div className='mb-6'>
                 <label htmlFor="user_wpensar" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuário do WPensar</label>
                 <input  type="user_wpensar" id="user_wpensar" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" onChange={onUserWPensarValueChange} placeholder="Exemplo: joao.silva" required />
@@ -141,7 +141,7 @@ export default function Login({ children }) {
           </form>
         </div>
       </div >
-      </Layout>}
+      </LayoutAuth>}
       </>
   )
 }

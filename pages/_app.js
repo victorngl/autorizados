@@ -14,7 +14,7 @@ function MyApp({
       <Head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Autorizador a Buscar - Escola Modelar Cambaúba</title>
+        <title>Intranet - Escola Modelar Cambaúba</title>
         <link rel="icon" href="https://cambauba.org.br/wp-content/uploads/2021/02/cropped-faviconcambauba-150x150.png" sizes="32x32"></link>
       </Head>
 

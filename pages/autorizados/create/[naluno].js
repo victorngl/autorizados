@@ -100,7 +100,7 @@ export default function AutorizadosPage({ aluno }) {
 
   return (
     <Layout>
-      <div className='p-10'>
+      <div className='p-7'>
         <div>
           <div className='mb-5 flex'>
             <div>
