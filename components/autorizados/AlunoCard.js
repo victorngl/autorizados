@@ -7,7 +7,10 @@ export default function AlunoCard({ setAlunoSelecionado, aluno }) {
   const { usuario, setUsuario } = useContext(UserContext);
   const router = useRouter()
 
+  console.log(aluno);
+  
   return (
+
     <div key={aluno.naluno} className="p-4 rounded border-2 border-grey-500 justify-center mb-2 shadow-xl md:w-9/12 gap-2">
       <div>
         <p className='font-semibold'>Aluno:</p>

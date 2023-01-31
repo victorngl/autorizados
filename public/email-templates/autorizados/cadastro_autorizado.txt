@@ -1,0 +1,19 @@
+Você cadastrou um Autorizado a buscar seu dependente!
+
+Dependente: 
+Nome: %NOMEALUNO%
+Série: %SERIEALUNO%
+
+Autorizado a buscar: 
+Nome: %NOMEAUTORIZADO%
+Documento: %DOCUMENTOAUTORIZADO%
+Parentesco: %PARENTESCOAUTORIZADO%
+Telefone: %TELEFONEAUTORIZADO%
+Celular: %CELULARAUTORIZADO%
+
+Cadastro feito pelo usuário %USUARIO% em %DATACADASTRO%
+
+Caso você não tenha realizado essa ação, entre em contato com a escola imediatamente.
+
+Este é um e-mail de notificação e foi gerado automaticamente. Por favor, não responda esta mensagem.
+

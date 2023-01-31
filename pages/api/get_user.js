@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'CPF Inválido!' })
   }
 
-  const user = await prisma.usuarios.findUnique({
+  const user = await prisma.usuarios.findFirst({
     where: {
       cpf: body.cpf,
     },

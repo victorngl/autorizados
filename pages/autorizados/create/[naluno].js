@@ -8,6 +8,7 @@ import Layout from '../../../components/layout/Layout';
 
 import { prisma } from '../../lib/db';
 import { useRouter } from 'next/router';
+import moment from 'moment/moment';
 
 export default function AutorizadosPage({ aluno }) {
   const { usuario, setUsuario } = useContext(UserContext);
@@ -24,9 +25,43 @@ export default function AutorizadosPage({ aluno }) {
     naluno: aluno.naluno,
   });
 
+  const sendEmailCadastrado = async (DataEmail) => {
+    
+    const JSONdata = JSON.stringify(DataEmail)
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSONdata,
+    }
+
+    const response = await fetch('/api/email/cadastro_autorizado', options)
+
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const current = new Date();
+    const formatDate = "DD-MM-YYYY HH:mm:ss"
+
+    const dateTime = moment(current).format(formatDate);
+
+    const DataEmail = {
+      nomealuno: aluno.nome,
+      serie: aluno.s_rie,
+      nomeautorizado: autorizado.nome,
+      documentoautorizado: autorizado.documento,
+      parentescoautorizado: autorizado.parentesco,
+      telefoneautorizado: autorizado.telefone,
+      celularautorizado: autorizado.celular,
+      usuario: usuario.username,
+      date_registro: dateTime,
+      name: usuario.nome,
+      email: usuario.email,
+    }
 
     const JSONdata = JSON.stringify(autorizado)
 
@@ -43,6 +78,7 @@ export default function AutorizadosPage({ aluno }) {
     const result = await response.json()
 
     if (response.ok) {
+      sendEmailCadastrado(DataEmail)
       router.push(`/autorizados/${aluno.naluno}`)
     }
   }

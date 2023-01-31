@@ -19,7 +19,7 @@ export default function AutorizadosPage({ children }) {
       </Layout>
     )
   }
-
+  console.log(alunos);
   return (
     <Layout>
       

@@ -77,7 +77,7 @@ export default function VerAutorizadosAdmin({ alunos }) {
             </div>
             {!alunoSelected ?
               <div className='justify-center flex'>
-                <ul>
+                <ul className='w-full'>
                   {
                     alunos.map((aluno, index) => (
 

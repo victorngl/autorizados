@@ -90,7 +90,7 @@ export default function Login({ children }) {
       body: JSONdata,
     }
 
-    const response = await fetch('/api/get_alunos', options)
+    const response = await fetch('/api/get_alunos_responsaveis', options)
 
     const result = await response.json()
 

@@ -16,7 +16,7 @@ export default function VerAutorizadosAdmin({ aluno }) {
                       <th className='p-3 text-left'>Parentesco</th>
                       <th className='p-3 text-left'>Telefone</th>
                       <th className='p-3 text-left'>Celular</th>
-                      <th className='p-3 text-left'>Ações</th>
+                      
                     </tr>
                   </thead>
 
@@ -27,7 +27,6 @@ export default function VerAutorizadosAdmin({ aluno }) {
                       <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.parentesco}</td>
                       <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.telefone}</td>
                       <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.celular}</td>
-                      <td className='border-grey-light border hover:bg-gray-100 p-3'><button data-modal-target="popup-modal" data-modal-toggle="popup-modal" onClick={() => showModal(autorizado.id)} className='font-bold'>Deletar Autorizado</button></td>
                     </tr>
                   </tbody>
                 </table>

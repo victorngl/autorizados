@@ -3,7 +3,6 @@ import { useSession } from 'next-auth/react';
 import Layout from '../../../components/layout/Layout';
 
 import { UserContext } from '../../../providers/user';
-import { AlunosContext } from '../../../providers/alunos';
 import VerAutorizadosAdmin from '../../../components/admin/autorizados/VerAutorizadosAdmin';
 
 export default function VerAutorizados({alunos}) {
