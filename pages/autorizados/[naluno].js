@@ -7,7 +7,7 @@ import { AlunosContext } from '../../providers/alunos';
 import Layout from '../../components/layout/Layout';
 import ListarAutorizados from '../../components/autorizados/ListarAutorizados';
 
-import { prisma } from '../lib/db';
+import { prisma } from '../../lib/db'
 
 import { useRouter } from 'next/router';
 

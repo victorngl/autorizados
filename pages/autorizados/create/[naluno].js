@@ -6,7 +6,7 @@ import { AlunosContext } from '../../../providers/alunos';
 
 import Layout from '../../../components/layout/Layout';
 
-import { prisma } from '../../lib/db';
+import { prisma } from '../../../lib/db';
 import { useRouter } from 'next/router';
 import moment from 'moment/moment';
 

@@ -17,16 +17,11 @@ const LayoutAuth = ({ children, title = "Sample Title" }) => {
             <Header mobileNavsidebar={mobileNavsidebar} setMobileNavsidebar={setMobileNavsidebar} />
             {children}
           </div>
-          
-
+        
         </div>
         <Footer />
-
       </div>
-
     </Fragment>
-
-
   );
 };
 
