@@ -94,15 +94,11 @@ export default function Login({ children }) {
 
     const result = await response.json()
 
-    //console.log(result.alunos)
     setAlunos(result.alunos);
   }
 
-
-  if (session && usuario) {
+  if (session && usuario) 
     return {...children}
-  }
-  
   
   return (
     <>

@@ -4,6 +4,8 @@ import UserProvider from '../providers/user'
 import { SessionProvider } from "next-auth/react"
 import Login from '../components/auth/login'
 import AlunosProvider from '../providers/alunos'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function MyApp({
   Component,
@@ -17,7 +19,7 @@ function MyApp({
         <title>Intranet - Escola Modelar Cambaúba</title>
         <link rel="icon" href="https://cambauba.org.br/wp-content/uploads/2021/02/cropped-faviconcambauba-150x150.png" sizes="32x32"></link>
       </Head>
-
+      <ToastContainer/>
       <SessionProvider>
         <UserProvider>
           <AlunosProvider>

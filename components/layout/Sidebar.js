@@ -15,7 +15,7 @@ const Sidebar = ({mobileNavsidebar}) => {
         <aside className={`${mobileNavsidebar ? 'block' : 'hidden'} sm:flex sm:flex-col z-50`} ref={sidebarRef}>
             <Logo />
             
-            <div className="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800">
+            <div className="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800 min-h-screen">
                 <Nav sidebarOutsideClick={sidebarOutsideClick} />
                 {/*<SettingButton />*/}
             </div>

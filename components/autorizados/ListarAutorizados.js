@@ -5,6 +5,7 @@ import { UserContext } from '../../providers/user';
 import { AlunosContext } from '../../providers/alunos';
 import { useRouter } from 'next/router';
 import DeleteAutorizadoModal from './DeleteAutorizadoModal'
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function ListarAutorizados({ aluno }) {
   const { usuario, setUsuario } = useContext(UserContext);
@@ -46,6 +47,7 @@ export default function ListarAutorizados({ aluno }) {
     const result = await response.json()
 
     if (response.ok) {
+      toast.warning("Autorizado deletado com sucesso!");
       router.push(`/autorizados/${aluno.naluno}`)
     }
 
@@ -55,7 +57,6 @@ export default function ListarAutorizados({ aluno }) {
   return (
     <>
       <DeleteAutorizadoModal show={showDeleteModal} setShowDeleteModal={setShowDeleteModal} deleteId={deleteId} handleDelete={handleDelete} />
-
       {
         aluno.autorizados &&
         <div>

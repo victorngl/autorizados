@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
     "@prisma/client": "^4.1.1",
     "axios": "^0.27.2",
     "moment": "^2.29.4",
@@ -19,9 +20,9 @@
     "react-csv": "^2.2.2",
     "react-dom": "18.2.0",
     "react-input-mask": "^2.0.4",
-    "@heroicons/react": "^1.0.6",
-    "react-js-pagination": "^3.0.3",
+    "react-js-pagination": "^3.0.2",
     "react-pure-modal": "^2.1.0",
+    "react-toastify": "^9.1.1",
     "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
