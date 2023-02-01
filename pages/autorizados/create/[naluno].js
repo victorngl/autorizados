@@ -79,7 +79,7 @@ export default function AutorizadosPage({ aluno }) {
     const result = await response.json()
 
     if (response.ok) {
-      toast.success('Auorizado a buscar cadastrado com sucesso!')
+      toast.success('Autorizado a buscar cadastrado com sucesso!')
       sendEmailCadastrado(DataEmail)
       router.push(`/autorizados/${aluno.naluno}`)
     }
