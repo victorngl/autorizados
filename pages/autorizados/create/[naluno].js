@@ -9,6 +9,7 @@ import Layout from '../../../components/layout/Layout';
 import { prisma } from '../../../lib/db';
 import { useRouter } from 'next/router';
 import moment from 'moment/moment';
+import { toast } from 'react-toastify';
 
 export default function AutorizadosPage({ aluno }) {
   const { usuario, setUsuario } = useContext(UserContext);
@@ -26,7 +27,7 @@ export default function AutorizadosPage({ aluno }) {
   });
 
   const sendEmailCadastrado = async (DataEmail) => {
-    
+
     const JSONdata = JSON.stringify(DataEmail)
 
     const options = {
@@ -78,6 +79,7 @@ export default function AutorizadosPage({ aluno }) {
     const result = await response.json()
 
     if (response.ok) {
+      toast.success('Auorizado a buscar cadastrado com sucesso!')
       sendEmailCadastrado(DataEmail)
       router.push(`/autorizados/${aluno.naluno}`)
     }
@@ -102,12 +104,16 @@ export default function AutorizadosPage({ aluno }) {
     <Layout>
       <div className='p-7'>
         <div>
+
           <div className='mb-5 flex'>
             <div>
               <ul className='font-bold'>
                 <li>Nome: {aluno.nome}</li>
                 <li>Série: {aluno.s_rie}</li>
               </ul>
+            </div>
+            <div className='ml-10 mt-5 flex'>
+              <button onClick={() => { router.back() }} className='py-2 px-10 bg-blue-500 text-white font-bold rounded'>Voltar</button> 
             </div>
 
           </div>

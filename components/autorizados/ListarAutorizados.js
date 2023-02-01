@@ -58,7 +58,7 @@ export default function ListarAutorizados({ aluno }) {
     <>
       <DeleteAutorizadoModal show={showDeleteModal} setShowDeleteModal={setShowDeleteModal} deleteId={deleteId} handleDelete={handleDelete} />
       {
-        aluno.autorizados &&
+        aluno.autorizados.length > 0 ?
         <div>
           {
             aluno.autorizados.map((autorizado, index) => (
@@ -90,7 +90,7 @@ export default function ListarAutorizados({ aluno }) {
             ))
           }
         </div>
-      }
+      : <div className='flex justify-center mt-10 '><p>Não há autorizados cadastrados!</p></div> }
     </>
   )
 }

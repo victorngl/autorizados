@@ -11,10 +11,12 @@ const Header = ({ mobileNavsidebar, setMobileNavsidebar }) => {
 
       <MenuIcon className='h-12 stroke-slate-600 cursor-pointer sm:hidden' onClick={() => setMobileNavsidebar(!mobileNavsidebar)} />
       {/*<SearchBox />*/}
-      
+
       <div className='ml-10 md:ml-0 flex justify-center items-center'>
         <img className='md:hidden w-10 h-10 mr-5' alt='' src="https://cdn.nvi.wpensar.com.br/cambauba/logo_carteirinha/ce6c983fbba5132c7f619f32a51707d6a9ae2395.png" />
-        <p className="font-semibold md:text-2xl md:tracking-wide">Intranet - Escola Modelar Cambaúba</p>
+        <div className=''>
+          <p className="font-semibold md:text-2xl md:tracking-wide">Intranet - Escola Modelar Cambaúba</p>
+        </div>
       </div>
 
       <div className="flex flex-shrink-0 items-center ml-auto">

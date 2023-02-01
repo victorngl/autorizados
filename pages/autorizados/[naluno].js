@@ -31,20 +31,22 @@ export default function AutorizadosPage({ aluno }) {
   return (
     <Layout>
       <div className='justify-center flex'>
-        <div className='w-full px-10'>
-          <div className='mb-5 md:flex md:items-center'>
+        <div className='w-full p-5'>
+          <div className='mb-5 flex items-center'>
             <div className='md:text-lg text-sm break-normal'>
               <ul className='font-bold'>
                 <li>Nome: {aluno.nome}</li>
                 <li>Série: {aluno.s_rie}</li>
               </ul>
             </div>
-            <div className='ml-10 mt-5'>
-              <button onClick={() => { router.push(`/autorizados/create/${aluno.naluno}`) }} className='py-2 px-10 bg-green-500 text-white font-bold rounded'>Adicionar autorizado</button>
+            <div className='ml-10 mt-5 flex gap-3 '>
+              <button onClick={() => { router.back() }} className='py-2 px-10 bg-blue-500 text-white font-bold rounded'>Voltar</button> <button onClick={() => { router.push(`/autorizados/create/${aluno.naluno}`) }} className='py-2 px-10 bg-green-500 text-white font-bold rounded'>Adicionar autorizado</button>
             </div>
           </div>
+          <div className='justify-center flex mt-10'>
+            <p className='font-sans font-semibold text-3xl'>Autorizados a Buscar: </p>
+          </div>
           <div>
-            <p className='font-semibold text-lg'>Autorizados a buscar: </p>
             {aluno && <ListarAutorizados aluno={aluno} />}
           </div>
         </div>
