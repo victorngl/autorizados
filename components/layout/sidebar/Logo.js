@@ -2,7 +2,7 @@ import React from 'react';
 
 const Logo = () => {
   return (
-    <div className='hidden md:block justify-center flex'>
+    <div className='hidden md:block justify-center md:flex'>
       <img className='inline-flex items-center justify-center w-max h-20' alt='' src="/logocambauba.png" />
       
       {/*
