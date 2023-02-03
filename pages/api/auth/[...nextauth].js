@@ -28,7 +28,7 @@ export const authOptions = {
         },
         async authorize(credentials, req) {
           // Add logic here to look up the user from the credentials supplied
-
+          
           const prisma = new PrismaClient();
          
           const getUser = await prisma.usuarios.findFirst({

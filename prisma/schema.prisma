@@ -13,6 +13,7 @@ model usuarios {
   cpf              String @id
   email            String? @db.VarChar(60)
   aluno            Alunos_Responsaveis[]
+  autorizados_cadastrados autorizados[]
   role             String? @db.VarChar(33)
 }
 
@@ -35,6 +36,8 @@ model autorizados {
   celular             String? @db.VarChar(100)
   aluno               alunos @relation(fields: [naluno], references: [naluno])
   naluno              Int
+  usuario             usuarios @relation(fields: [user_id], references: [cpf])
+  user_id             String
 }
 
 model Alunos_Responsaveis {

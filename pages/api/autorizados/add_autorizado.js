@@ -20,6 +20,7 @@ export default async function handler(req, res) {
       telefone: body.telefone,
       celular: body.celular,
       naluno: body.naluno,
+      user_id: body.user_id,
     },
   })
 

@@ -22,9 +22,15 @@ export default function ListarAutorizados({ aluno }) {
     )
   }
 
-  const showModal = (deleteId) => {
-    setDeleteId(deleteId);
-    setShowDeleteModal(true);
+  const showModal = (autorizado) => {
+
+    if (autorizado.user_id == usuario.cpf) {
+      setDeleteId(autorizado.id);
+      setShowDeleteModal(true);
+    }
+    else {
+      toast.warning('Somente o usuário que cadastrou o autorizado a buscar pode deleta-lo.')
+    }
   }
 
   const handleDelete = async (idToDelete) => {
@@ -59,38 +65,38 @@ export default function ListarAutorizados({ aluno }) {
       <DeleteAutorizadoModal show={showDeleteModal} setShowDeleteModal={setShowDeleteModal} deleteId={deleteId} handleDelete={handleDelete} />
       {
         aluno.autorizados.length > 0 ?
-        <div>
-          {
-            aluno.autorizados.map((autorizado, index) => (
-              <>
-                <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
-                  <thead className='text-xs uppercase bg-gray-50'>
-                    <tr className='text-white bg-red-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0'>
-                      <th className='p-3 text-left'>Nome</th>
-                      <th className='p-3 text-left'>Documento</th>
-                      <th className='p-3 text-left'>Parentesco</th>
-                      <th className='p-3 text-left'>Telefone</th>
-                      <th className='p-3 text-left'>Celular</th>
-                      <th className='p-3 text-left'>Ações</th>
-                    </tr>
-                  </thead>
+          <div>
+            {
+              aluno.autorizados.map((autorizado, index) => (
+                <>
+                  <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
+                    <thead className='text-xs uppercase bg-gray-50'>
+                      <tr className='text-white bg-red-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0'>
+                        <th className='p-3 text-left'>Nome</th>
+                        <th className='p-3 text-left'>Documento</th>
+                        <th className='p-3 text-left'>Parentesco</th>
+                        <th className='p-3 text-left'>Telefone</th>
+                        <th className='p-3 text-left'>Celular</th>
+                        <th className='p-3 text-left'>Ações</th>
+                      </tr>
+                    </thead>
 
-                  <tbody className='flex-1 sm:flex-none text-xs'>
-                    <tr key={index} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
-                      <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.nome}</td>
-                      <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.documento}</td>
-                      <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.parentesco}</td>
-                      <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.telefone}</td>
-                      <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.celular}</td>
-                      <td className='border-grey-light border hover:bg-gray-100 p-3'><button data-modal-target="popup-modal" data-modal-toggle="popup-modal" onClick={() => showModal(autorizado.id)} className='font-bold'>Deletar Autorizado</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
-            ))
-          }
-        </div>
-      : <div className='flex justify-center mt-10 '><p>Não há autorizados cadastrados!</p></div> }
+                    <tbody className='flex-1 sm:flex-none text-xs'>
+                      <tr key={index} className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+                        <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.nome}</td>
+                        <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.documento}</td>
+                        <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.parentesco}</td>
+                        <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.telefone}</td>
+                        <td className='border-grey-light border hover:bg-gray-100 p-3'>{autorizado.celular}</td>
+                        <td className='border-grey-light border hover:bg-gray-100 p-3'><button data-modal-target="popup-modal" data-modal-toggle="popup-modal" onClick={() => showModal(autorizado)} className='font-bold'>Deletar Autorizado</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </>
+              ))
+            }
+          </div>
+          : <div className='flex justify-center mt-10 '><p>Não há autorizados cadastrados!</p></div>}
     </>
   )
 }

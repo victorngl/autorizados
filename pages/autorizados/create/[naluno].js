@@ -24,6 +24,7 @@ export default function AutorizadosPage({ aluno }) {
     telefone: '',
     celular: '',
     naluno: aluno.naluno,
+    user_id: usuario.cpf,
   });
 
   const sendEmailCadastrado = async (DataEmail) => {
