@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import Layout from '../../../components/layout_autorizados/Layout';
-
+import { prisma } from '../../../lib/db';
 import { UserContext } from '../../../providers/user';
 import VerAutorizadosAdmin from '../../../components/admin/autorizados/VerAutorizadosAdmin';
 
