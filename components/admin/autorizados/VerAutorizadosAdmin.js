@@ -22,9 +22,9 @@ export default function VerAutorizadosAdmin({ alunos }) {
     { nome: '7º Ano' },
     { nome: '8º Ano' },
     { nome: '9º Ano' },
-    { nome: '1ª.Série' },
-    { nome: '2ª.Série' },
-    { nome: '3ª.Série' },
+    { nome: '1ª Série' },
+    { nome: '2ª Série' },
+    { nome: '3ª Série' },
   ]
 
   const handleClassSelectec = (event) => {
