@@ -46,6 +46,9 @@ export default function VerAutorizados({alunos}) {
 export async function getServerSideProps(context) {
 
   const getAlunos = await prisma.alunos.findMany({
+    orderBy: {
+      nome: 'asc',
+    },
     include: {
       autorizados: true,
     },

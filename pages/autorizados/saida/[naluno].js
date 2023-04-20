@@ -27,21 +27,7 @@ export default function AutorizadosPage({ aluno }) {
     user_id: usuario.cpf,
   });
 
-  const sendEmailCadastrado = async (DataEmail) => {
-
-    const JSONdata = JSON.stringify(DataEmail)
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSONdata,
-    }
-
-    const response = await fetch('/api/email/cadastro_autorizado', options)
-
-  }
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -81,7 +67,6 @@ export default function AutorizadosPage({ aluno }) {
 
     if (response.ok) {
       toast.success('Autorizado a buscar cadastrado com sucesso!')
-      sendEmailCadastrado(DataEmail)
       router.push(`/autorizados/${aluno.naluno}`)
     }
   }
