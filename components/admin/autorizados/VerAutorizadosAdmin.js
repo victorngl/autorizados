@@ -77,7 +77,7 @@ export default function VerAutorizadosAdmin({ alunos }) {
             </div>
             {!alunoSelected ?
               <div className='justify-center flex'>
-                <ul className='w-full'>
+                <ul className='w-full space-y-2'>
                   {
                     alunos.map((aluno, index) => (
 
@@ -100,6 +100,7 @@ export default function VerAutorizadosAdmin({ alunos }) {
                               <div className="block">
                                 <div className="w-full text-lg font-semibold">{aluno.nome}</div>
                               </div>
+                              <div>{aluno.autorizados.length}</div>
                             </label>
                           </li>
 
